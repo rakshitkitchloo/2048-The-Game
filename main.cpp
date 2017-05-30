@@ -1,4 +1,5 @@
-#include<stdio.h>
+#include<windows.h>
+ #include<stdio.h>
 #include<stdlib.h>
 #include<fstream>
 #include<GL/glut.h>
@@ -309,15 +310,15 @@ void init()
 void drawStrokeText(char str[250],int x,int y,int z,float p1,float p2)
 {
       int i;
-	  glPushMatrix();
-	  glTranslatef(x, y,z);
-	  glScalef(p1,p2,z);
+	 glPushMatrix();
+	 glTranslatef(x, y,z);
+	 glScalef(p1,p2,z);
 
-	  for (i=0;str[i]!='\0';i++)
-	  {
+	 for (i=0;str[i]!='\0';i++)
+	 {
     		glutStrokeCharacter(GLUT_STROKE_ROMAN , str[i]);
-	  }
-	  glPopMatrix();
+	 }
+	 glPopMatrix();
 }
 void makebox(int type, double x0,double y0, double x1,double y1, double x2, double y2, double x3,double y3)
 {
@@ -325,128 +326,139 @@ void makebox(int type, double x0,double y0, double x1,double y1, double x2, doub
     switch(type)
         {
         case 2:
-          glColor3f(1.0,0.0,0.0);
+          glColor3f(0.827,0.827,0.827);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
-            glColor3f(1.0,1.0,1.0);
+            glLineWidth(3.0);
+            glColor3f(0.2, 0.200, 0.300);
             drawStrokeText("2",x3+20,y3+20,0,0.1,0.1);
             break;
         case 4:
-            glColor3f(0.0,1.0,0.0);
+            glColor3f(0.961, 0.961, 0.961);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
-            glColor3f(1.0,1.0,1.0);
+            glLineWidth(3.0);
+            glColor3f(0.2, 0.200, 0.300);
             drawStrokeText("4",x3+20,y3+20,0,0.1,0.1);
             break;
         case 8:
-            glColor3f(0.0,0.0,1.0);
+            glColor3f(1.000, 0.980, 0.804);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
-            glColor3f(1.0,1.0,1.0);
+            glLineWidth(3.0);
+            glColor3f(0.2, 0.200, 0.300);
             drawStrokeText("8",x3+20,y3+20,0,0.1,0.1);
             break;
         case 16:
-            glColor3f(0.5,0,1);
+            glColor3f(1.000, 0.9, 0.000);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
+            glLineWidth(3.0);
             glColor3f(1.0,1.0,1.0);
             drawStrokeText("16",x3+18,y3+20,0,0.1,0.1);
             break;
         case 32:
-           glColor3f(1.0,0.5,0.0);
+           glColor3f(1.000, 0.549, 0.000);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
+            glLineWidth(3.0);
             glColor3f(1.0,1.0,1.0);
             drawStrokeText("32",x3+18,y3+20,0,0.1,0.1);
             break;
         case 64:
-           glColor3f(0.0,1.0,0.5);
+           glColor3f(0.980, 0.400, 0.300);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
+            glLineWidth(3.0);
             glColor3f(1.0,1.0,1.0);
             drawStrokeText("64",x3+18,y3+20,0,0.1,0.1);
             break;
         case 128:
-           glColor3f(0.8,1,0.8);
+           glColor3f(0.565, 0.933, 0.565);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
+            glLineWidth(3.0);
             glColor3f(1.0,1.0,1.0);
             drawStrokeText("128",x3+14,y3+20,0,0.1,0.1);
             break;
         case 256:
-            glColor3f(0.5,0.5,0.5);
+            glColor3f(0.529, 0.808, 0.980);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
+            glLineWidth(3.0);
             glColor3f(1.0,1.0,1.0);
             drawStrokeText("256",x3+14,y3+20,0,0.1,0.1);
             break;
         case 512:
-            glColor3f(0.3,0.5,0.9);
+            glColor3f(0.118,0.565,1.000);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
+            glLineWidth(3.0);
             glColor3f(1.0,1.0,1.0);
             drawStrokeText("512",x3+14,y3+20,0,0.1,0.1);
             break;
         case 1024:
-           glColor3f(1.0,0.3,0.9);
+           glColor3f(0.541, 0.169, 0.886);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
+             glLineWidth(3.0);
             glColor3f(1.0,1.0,1.0);
             drawStrokeText("1024",x3+12,y3+20,0,0.1,0.1);
             break;
         case 2048:
-            glColor3f(0.6,0.7,0.2);
+            glColor3f(0.627, 0.322, 0.176);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
             glVertex2f(x2,y2);
             glVertex2f(x3,y3);
             glEnd();
+             glLineWidth(3.0);
             glColor3f(1.0,1.0,1.0);
             drawStrokeText("2048",x3+12,y3+20,0,0.1,0.1);
             break;
         case 0:
-           glColor3f(1.0,1.0,1.0);
+           glColor3f(0.200, 0.400, 0.600);
             glBegin(GL_POLYGON);
             glVertex2f(x0,y0);
             glVertex2f(x1,y1);
@@ -482,31 +494,31 @@ void calscore()
 void game_window()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(1.0,0.0,0.0);
-    glLineWidth(2);
-    glBegin(GL_LINE_LOOP);
-    glVertex2d(2,2);
-    glVertex2d(397,2);
-    glVertex2d(397,297);
-    glVertex2d(2,297);
-    glEnd();
-
-    glColor3f(0.0,0.0,1.0);
+    glClearColor(0.150, 0.200, 0.400,0.0);
+    glLineWidth(3.0);
+    glColor3f(1.0,1.0,1.0);
     drawStrokeText("2048 - The Game",70,250,0,0.20,0.20);
-    glColor3f(0.0,0.5,0.0);
-    drawStrokeText("Score",320,200,0,0.1,0.1);
+    glColor3f(1.000, 0.843, 0.000);
+    glLineWidth(1.0);
+    drawStrokeText("SCORE",270,150,0,0.1,0.1);
     char str[10];
     calscore();
     sprintf(str,"%d\0",score);
-    drawStrokeText(str,327,180,0,0.1,0.1);
-    drawStrokeText("High Score",310,150,0,0.1,0.1);
+    glLineWidth(3.0);
+    glColor3f(0.698, 0.133, 0.133);
+    drawStrokeText(str,327,150,0,0.1,0.1);
+    glLineWidth(1.0);
+    glColor3f(1.000, 0.843, 0.000);
+    drawStrokeText("BEST",270,100,0,0.1,0.1);
     if(score>highscore)
     {
         highscore=score;
     }
     char str1[10];
      sprintf(str1,"%d\0",highscore);
-    drawStrokeText(str1,327,130,0,0.1,0.1);
+     glLineWidth(3.0);
+    glColor3f(0.698, 0.133, 0.133);
+    drawStrokeText(str1,327,100,0,0.1,0.1);
 
     int i,j;
     int x0=45,y0=30;
@@ -514,10 +526,11 @@ void game_window()
         x[i]=x0+i*dxy;
     for(i=0;i<maxxy;i++)
         y[i]=y0+((4-i)*dxy);
-    glColor3f(1.0,0.5,0.0);
+    glColor3f(0.2, 0.200, 0.300);
+    glLineWidth(7.0);
     for(j=0;j<maxxy-1;j++)
-        for(i=0;i<maxxy-1;i++)
-            {
+      for(i=0;i<maxxy-1;i++)
+           {
                 glBegin(GL_LINE_LOOP);
                 glVertex2d(x[i],y[j]);
                 glVertex2d(x[i+1],y[j]);
@@ -525,11 +538,6 @@ void game_window()
                 glVertex2d(x[i],y[j+1]);
                 glEnd();
             }
-    glColor3f(1.0,0.0,0.0);
-    glBegin(GL_LINES);
-    glVertex2f(300,40);
-    glVertex2f(300,222);
-    glEnd();
 
     i=0;
     j=0;
@@ -550,18 +558,7 @@ void game_window()
         makebox(mainarr[j][i], x[i]+1.5,y[j]-1.5,x[i+1]-1.5,y[j]-1.5,x[i+1]-1.5,y[j+1]+1.5,x[i]+1.5,y[j+1]+1.5);
     }
     }
-    glLineWidth(2);
-    glColor3f(1.0,0.5,0.0);
-    for(j=0;j<maxxy-1;j++)
-        for(i=0;i<maxxy-1;i++)
-            {
-                glBegin(GL_LINE_LOOP);
-                glVertex2d(x[i],y[j]);
-                glVertex2d(x[i+1],y[j]);
-                glVertex2d(x[i+1],y[j+1]);
-                glVertex2d(x[i],y[j+1]);
-                glEnd();
-            }
+
     glutSwapBuffers();
 }
 void myKey(unsigned char key,int x,int y)
@@ -598,23 +595,22 @@ void myKey(unsigned char key,int x,int y)
 void initial_window()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(1.0,0.0,0.0);
-    glLineWidth(2);
-    glBegin(GL_LINE_LOOP);
-    glVertex2d(2,2);
-    glVertex2d(397,2);
-    glVertex2d(397,297);
-    glVertex2d(2,297);
-    glEnd();
-    glColor3f(0.0,0.0,1.0);
+    glClearColor(0.150, 0.200, 0.400,0.0);
+    glLineWidth(3.0);
+    glColor3f(1.0,1.0,1.0);
     drawStrokeText("2048 - The Game",70,250,0,0.20,0.20);
-    glColor3f(0.0,0.8,1.0);
+    glLineWidth(1.0);
+    glColor3f(0.698, 0.133, 0.133);
+    glLineWidth(2.0);
     drawStrokeText("RULES:",20,200,0,0.12,0.12);
+    glColor3f(0.0,0.8,1.0);
+    glLineWidth(1.0);
     drawStrokeText("1. Objective of the game is to get the number 2048.",20,180,0,0.08,0.08);
     drawStrokeText("2. You will have a grid of 16 tiles.",20,160,0,0.08,0.08);
     drawStrokeText("3. Move using arrow keys to join two equal numbers.",20,140,0,0.09,0.08);
     drawStrokeText("4. When two equal numbers are in touch, they will add up.",20,120,0,0.08,0.08);
     drawStrokeText("5. If there are no free tiles on our grid, the game ends.",20,100,0,0.08,0.08);
+    glColor3f(1.000, 0.843, 0.000);
     drawStrokeText("Press P to Play.                  Press Q to Quit.",20,60,0,0.08,0.08);
     glFlush();
     glutSwapBuffers();
@@ -662,7 +658,7 @@ int main(int argc,char **argv)
     glutKeyboardFunc(myKey);
     glutIdleFunc(idle);
     FILE *fp;
-    if((fp=fopen("highscore.txt","r"))==NULL)
+    if((fp=fopen("highScore.txt","r"))==NULL)
     {
         printf("Cannot open the file");
         //exit(1);
