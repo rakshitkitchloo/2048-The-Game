@@ -615,19 +615,49 @@ void initial_window()
     glFlush();
     glutSwapBuffers();
 }
+
+void myReshape(int w, int h) {
+	glViewport(0, 0, w, h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	if(w <= h)	glOrtho(-2.0, 2.0, -2.0*(GLfloat)h/(GLfloat)w, 2.0*(GLfloat)h/(GLfloat)w, -10.0, 10.0);
+	else glOrtho(-2.0*(GLfloat)w/(GLfloat)h, 2.0*(GLfloat)w/(GLfloat)h, -2.0, 2.0, -10.0, 10.0);
+	glMatrixMode(GL_MODELVIEW);
+	glutPostRedisplay();
+}
+
 void display()
 {
     if(window)
     {
         if(check==1)
         {
-             drawStrokeText("You Lost it",20,100,0,0.2,0.2);
+             //glClear(GL_COLOR_BUFFER_BIT);
+             //glDisable(GL_CULL_FACE);
+             //glClearColor(0.150, 0.200, 0.400,0.0);
+             glColor3f(0.698, 0.133, 0.133);
+             glPointSize(3.0);
+             glBegin(GL_LINE_LOOP);
+                glVertex2f(100,100);
+                glVertex2f(300,100);
+                glVertex2f(300,200);
+                glVertex2f(100,200);
+             glEnd();
+             glColor3f(1.000, 0.843, 0.000);
+             glBegin(GL_POLYGON);
+                glVertex2f(100,100);
+                glVertex2f(300,100);
+                glVertex2f(300,200);
+                glVertex2f(100,200);
+             glEnd();
+             glColor3f(0.150, 0.200, 0.400);
+             drawStrokeText("You Lost",140,145,0,0.2,0.2);
              glutSwapBuffers();
         }
         else if(maxelement()==2048)
         {
 
-            drawStrokeText("YOU WIN",20,100,0,0.2,0.2);
+            drawStrokeText("You Won",20,100,0,0.2,0.2);
              glutSwapBuffers();
         }
         else
@@ -654,6 +684,7 @@ int main(int argc,char **argv)
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE,GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_LINE_SMOOTH);
+    //glutReshapeFunc(myReshape);
     glutDisplayFunc(display);
     glutKeyboardFunc(myKey);
     glutIdleFunc(idle);
