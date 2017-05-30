@@ -1,11 +1,13 @@
 #include<windows.h>
- #include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<fstream>
 #include<GL/glut.h>
-int score;
+#include<GL/glext.h>
+#include<GL/freeglut.h>
 #define maxxy 5
 #define dxy  50
+int score;
 int mainarr[4][4];
 int check=0;
 bool window=false;
@@ -301,7 +303,6 @@ void init()
     glClearColor(1.0,1.0,1.0,1.0);
     glColor3f(1.0,0.0,0.0);
     glPointSize(5);
-    //glLineWidth(5);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0.0,399.0,0.0,300.0);
@@ -519,7 +520,6 @@ void game_window()
      glLineWidth(3.0);
     glColor3f(0.698, 0.133, 0.133);
     drawStrokeText(str1,327,100,0,0.1,0.1);
-
     int i,j;
     int x0=45,y0=30;
     for(i=0;i<maxxy;i++)
@@ -538,7 +538,6 @@ void game_window()
                 glVertex2d(x[i],y[j+1]);
                 glEnd();
             }
-
     i=0;
     j=0;
    char ch;
@@ -550,7 +549,6 @@ void game_window()
         }
         printf("\n");
     }
-
     printf("\n\n");
     for( j=0;j<4;j++)
         for(i=0;i<4;i++)
@@ -615,7 +613,6 @@ void initial_window()
     glFlush();
     glutSwapBuffers();
 }
-
 void myReshape(int w, int h) {
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
@@ -625,30 +622,26 @@ void myReshape(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 	glutPostRedisplay();
 }
-
 void display()
 {
     if(window)
     {
         if(check==1)
         {
-             //glClear(GL_COLOR_BUFFER_BIT);
-             //glDisable(GL_CULL_FACE);
-             //glClearColor(0.150, 0.200, 0.400,0.0);
              glColor3f(0.698, 0.133, 0.133);
              glPointSize(3.0);
              glBegin(GL_LINE_LOOP);
-                glVertex2f(100,100);
-                glVertex2f(300,100);
-                glVertex2f(300,200);
-                glVertex2f(100,200);
+             glVertex2f(100,100);
+             glVertex2f(300,100);
+             glVertex2f(300,200);
+             glVertex2f(100,200);
              glEnd();
              glColor3f(1.000, 0.843, 0.000);
              glBegin(GL_POLYGON);
-                glVertex2f(100,100);
-                glVertex2f(300,100);
-                glVertex2f(300,200);
-                glVertex2f(100,200);
+             glVertex2f(100,100);
+             glVertex2f(300,100);
+             glVertex2f(300,200);
+             glVertex2f(100,200);
              glEnd();
              glColor3f(0.150, 0.200, 0.400);
              drawStrokeText("You Lost",140,145,0,0.2,0.2);
@@ -658,7 +651,7 @@ void display()
         {
 
             drawStrokeText("You Won",20,100,0,0.2,0.2);
-             glutSwapBuffers();
+            glutSwapBuffers();
         }
         else
         game_window();
@@ -666,7 +659,6 @@ void display()
     else
         initial_window();
 }
-
 void idle()
 {
     glutPostRedisplay();
@@ -675,16 +667,20 @@ int main(int argc,char **argv)
 {
     int i,j;
     glutInit(&argc,argv);
-    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH|GLUT_MULTISAMPLE);
     glutInitWindowSize(800,600);
     glutInitWindowPosition(0,0);
     glutCreateWindow("2048 - The Game !");
     startboard();
     init();
-    glEnable(GL_BLEND);
+    glutSetOption(GLUT_MULTISAMPLE,8);
+    glEnable(GL_MULTISAMPLE_3DFX);
     glBlendFunc(GL_ONE,GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     glEnable(GL_LINE_SMOOTH);
-    //glutReshapeFunc(myReshape);
+    glEnable(GL_POLYGON_SMOOTH);
+    glEnable(GL_POINT_SMOOTH);
+    glEnable(GL_MULTISAMPLE);
     glutDisplayFunc(display);
     glutKeyboardFunc(myKey);
     glutIdleFunc(idle);
@@ -692,7 +688,6 @@ int main(int argc,char **argv)
     if((fp=fopen("highScore.txt","r"))==NULL)
     {
         printf("Cannot open the file");
-        //exit(1);
     }
     fscanf(fp,"%d",&highscore);
     printf("%d",highscore);
