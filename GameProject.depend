@@ -239,3 +239,22 @@
 	<stddef.h>
 	<GL/gl.h>
 
+1496153198 source:d:\2048-the-game\main.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<fstream>
+	<GL/glut.h>
+	<GL/glext.h>
+	<GL/freeglut.h>
+
+1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\glext.h
+	<windows.h>
+
+1426329928 c:\program files (x86)\codeblocks\mingw\include\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1426329928 c:\program files (x86)\codeblocks\mingw\include\gl\freeglut_ext.h
+	<stdarg.h>
+

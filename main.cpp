@@ -12,6 +12,7 @@ int mainarr[4][4];
 int check=0;
 bool window=false;
 int highscore=0;
+int flag=0;
 int rand2or4()
 {
     if(rand()%4!=0)
@@ -174,7 +175,6 @@ void compressarrayright()
         }
     }
     }
-
 }
 void slidearrayright()
 {
@@ -296,7 +296,6 @@ int maxelement()
     }
     return m;
 }
-
 double x[50]={0.0},y[50]={0.0};
 void init()
 {
@@ -556,7 +555,6 @@ void game_window()
         makebox(mainarr[j][i], x[i]+1.5,y[j]-1.5,x[i+1]-1.5,y[j]-1.5,x[i+1]-1.5,y[j+1]+1.5,x[i]+1.5,y[j+1]+1.5);
     }
     }
-
     glutSwapBuffers();
 }
 void myKey(unsigned char key,int x,int y)
@@ -647,11 +645,31 @@ void display()
              drawStrokeText("You Lost",140,145,0,0.2,0.2);
              glutSwapBuffers();
         }
-        else if(maxelement()==2048)
+        else if(maxelement()>=16)
         {
-
-            drawStrokeText("You Won",20,100,0,0.2,0.2);
-            glutSwapBuffers();
+                if(flag==0)
+                {
+                    game_window();
+                    flag=1;
+                }
+             glColor3f(0.698, 0.133, 0.133);
+             glPointSize(3.0);
+             glBegin(GL_LINE_LOOP);
+             glVertex2f(100,100);
+             glVertex2f(300,100);
+             glVertex2f(300,200);
+             glVertex2f(100,200);
+             glEnd();
+             glColor3f(1.000, 0.549, 0.000);
+             glBegin(GL_POLYGON);
+             glVertex2f(100,100);
+             glVertex2f(300,100);
+             glVertex2f(300,200);
+             glVertex2f(100,200);
+             glEnd();
+             glColor3f(0.150, 0.200, 0.400);
+             drawStrokeText("You Won",140,145,0,0.2,0.2);
+             glutSwapBuffers();
         }
         else
         game_window();
